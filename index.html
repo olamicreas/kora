@@ -1,0 +1,832 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kora Systems Group | National IT Infrastructure</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        dark: '#020204',
+                        accent: '#00F0FF',
+                        koraGold: '#C19B44',
+                        koraBlue: '#0b1320',
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- AOS Animation CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+
+    <style>
+        body {
+            background-color: #020204;
+            color: #f8fafc;
+            overflow-x: hidden;
+        }
+
+        /* Tech Grid Background */
+        .tech-grid {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100vh;
+            background-image: 
+                linear-gradient(to right, rgba(255,255,255,0.03) 1px, transparent 1px),
+                linear-gradient(to bottom, rgba(255,255,255,0.03) 1px, transparent 1px);
+            background-size: 50px 50px;
+            pointer-events: none;
+            z-index: 1;
+            mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 20%, transparent 80%);
+        }
+
+        /* Continuous Floating Animations for 3D Orbs */
+        @keyframes float1 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, 20px) scale(1.1); }
+        }
+        @keyframes float2 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(30px, -30px) scale(1.05); }
+        }
+        @keyframes float3 {
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-20px, -40px) scale(1.2); }
+        }
+        .anim-float-1 { animation: float1 8s ease-in-out infinite; }
+        .anim-float-2 { animation: float2 10s ease-in-out infinite; }
+        .anim-float-3 { animation: float3 9s ease-in-out infinite; }
+
+        /* Premium Glass Cards */
+        .glass-card {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.04) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .glass-card:hover {
+            box-shadow: 0 20px 50px -10px rgba(193, 155, 68, 0.15);
+        }
+        .glass-card.card-cyan:hover { box-shadow: 0 20px 50px -10px rgba(6, 182, 212, 0.15); }
+        .glass-card.card-emerald:hover { box-shadow: 0 20px 50px -10px rgba(16, 185, 129, 0.15); }
+
+        /* 3D Container */
+        .perspective-container {
+            perspective: 1200px;
+            transform-style: preserve-3d;
+        }
+        .tilt-element {
+            transition: transform 0.1s ease-out;
+            transform-style: preserve-3d;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #020204; }
+        ::-webkit-scrollbar-thumb { background: #333; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #555; }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Global Grid Overlay -->
+    <div class="tech-grid"></div>
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 border-b border-transparent" data-aos="fade-down" data-aos-duration="1000">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center relative z-10">
+            <div class="flex items-center gap-4 group cursor-pointer">
+                <div class="relative w-12 h-12 bg-koraBlue rounded-[14px] flex items-center justify-center overflow-hidden border border-white/10 shadow-lg group-hover:shadow-koraGold/20 transition-all duration-500">
+                    <div class="absolute w-[22px] h-[22px] border-2 border-koraGold rotate-45 group-hover:rotate-[135deg] transition-transform duration-700"></div>
+                    <div class="absolute w-[10px] h-[10px] bg-koraGold rounded-full"></div>
+                </div>
+                <span class="text-2xl font-black tracking-tighter text-white">
+                    KORA<span class="font-light text-white/40">SYSTEMS</span>
+                </span>
+            </div>
+            
+            <div class="hidden md:flex items-center gap-10">
+                <a href="#core-it" class="text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors relative group">
+                    Core IT
+                    <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-koraGold group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#bhtos" class="text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors relative group">
+                    BHTOS
+                    <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-emerald-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <a href="#betos" class="text-xs font-bold uppercase tracking-widest text-white/60 hover:text-white transition-colors relative group">
+                    BETOS
+                    <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
+                </a>
+                <button class="px-8 py-3 rounded-full bg-white text-black font-bold text-xs uppercase tracking-widest hover:scale-105 hover:bg-koraGold transition-all duration-300 shadow-[0_0_20px_rgba(255,255,255,0.2)]">
+                    Partner With Us
+                </button>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-btn" class="md:hidden text-white hover:text-koraGold transition-colors">
+                <i class="ph ph-list text-3xl"></i>
+            </button>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="fixed inset-0 bg-dark/95 backdrop-blur-3xl z-50 hidden flex-col items-center justify-center gap-8 opacity-0 transition-opacity duration-300">
+            <button id="close-menu-btn" class="absolute top-8 right-8 text-white hover:text-koraGold transition-colors">
+                <i class="ph ph-x text-3xl"></i>
+            </button>
+            <a href="#core-it" class="text-xl font-bold uppercase tracking-widest text-white hover:text-koraGold transition-colors">Core IT</a>
+            <a href="#bhtos" class="text-xl font-bold uppercase tracking-widest text-white hover:text-emerald-400 transition-colors">BHTOS</a>
+            <a href="#betos" class="text-xl font-bold uppercase tracking-widest text-white hover:text-cyan-400 transition-colors">BETOS</a>
+            <a href="#about" class="text-xl font-bold uppercase tracking-widest text-white hover:text-white transition-colors">Company</a>
+            <button class="mt-4 px-8 py-3 rounded-full bg-white text-black font-bold text-sm uppercase tracking-widest hover:bg-koraGold transition-all duration-300">
+                Partner With Us
+            </button>
+        </div>
+    </nav>
+
+    <!-- HERO 3D -->
+    <section id="hero" class="relative min-h-screen flex items-center justify-center overflow-hidden bg-dark pt-20 z-10 perspective-container">
+        
+        <div class="absolute inset-0 z-0 flex items-center justify-center opacity-50">
+            <div class="anim-float-1 absolute w-[45vw] h-[45vw] rounded-full mix-blend-screen filter blur-[100px] bg-koraGold/20 top-[-10%] left-[-10%]"></div>
+            <div class="anim-float-2 absolute w-[40vw] h-[40vw] rounded-full mix-blend-screen filter blur-[90px] bg-emerald-600/30 bottom-[-10%] right-[-10%]"></div>
+            <div class="anim-float-3 absolute w-[50vw] h-[50vw] rounded-full mix-blend-screen filter blur-[100px] bg-cyan-600/20 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"></div>
+        </div>
+
+        <div id="hero-content" class="tilt-element relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center w-full pointer-events-none">
+            <div data-aos="zoom-in" data-aos-duration="1000" class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
+                <div class="relative flex h-2.5 w-2.5">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-koraGold opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-koraGold"></span>
+                </div>
+                <span class="text-xs font-bold text-white/90 uppercase tracking-[0.2em]">Next-Gen Enterprise Solutions</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl lg:text-[8rem] font-black text-white tracking-tighter mb-8 leading-[1.05] uppercase drop-shadow-2xl" style="transform: translateZ(60px);">
+                <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">Architecting</div>
+                <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
+                    The Future.
+                </div>
+            </h1>
+
+            <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500" class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
+                Kora Systems Group merges <strong class="text-koraGold font-medium">World-Class IT Capabilities</strong> with national-scale operating systems for <strong class="text-emerald-400 font-medium">Healthcare</strong> and <strong class="text-cyan-400 font-medium">Education</strong>.
+            </p>
+        </div>
+
+        <div data-aos="fade-in" data-aos-duration="1500" data-aos-delay="1000" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
+            <span class="text-[10px] uppercase font-bold tracking-[0.4em] text-white">Scroll</span>
+            <div class="w-[2px] h-12 bg-gradient-to-b from-koraGold to-transparent rounded-full"></div>
+        </div>
+    </section>
+
+    <!-- CORE IT CAPABILITIES -->
+    <section id="core-it" class="bg-dark relative border-t border-white/5 z-20 overflow-hidden">
+        <div id="core-it-pin" class="min-h-screen flex flex-col justify-center relative w-full py-20 lg:py-0">
+            <div class="lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[5vw] xl:left-[10vw] z-30 px-6 lg:px-0 mb-12 lg:mb-0 w-full lg:w-auto text-center lg:text-left pointer-events-none">
+                <h2 data-aos="fade-right" class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter drop-shadow-lg leading-tight">
+                    Core IT<br/><span class="text-koraGold">Capabilities.</span>
+                </h2>
+                <p data-aos="fade-right" data-aos-delay="100" class="text-white/50 mt-4 max-w-sm mx-auto lg:mx-0 font-light leading-relaxed text-lg">
+                    The foundational tech infrastructure powering startups, enterprises, and national platforms.
+                </p>
+            </div>
+
+            <div id="it-track" class="flex flex-col lg:flex-row gap-8 lg:gap-10 px-6 lg:px-0 lg:pl-[40vw] xl:pl-[35vw] lg:pr-[15vw] w-full lg:w-max items-center h-auto">
+                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                        <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
+                                <i class="ph ph-database text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight">ERP Development</h3>
+                            <p class="text-white/60 text-lg leading-relaxed font-light">A new era in ERP development. Custom-built, end-to-end mobility solutions leveraging agile DevOps to future-proof your enterprise.</p>
+                        </div>
+                        <div class="relative z-10 font-mono text-[10px] text-koraGold/50 uppercase tracking-[0.3em] font-bold mt-10">[ Module 01 ]</div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                        <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
+                                <i class="ph ph-device-mobile text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight">Custom App Dev</h3>
+                            <p class="text-white/60 text-lg leading-relaxed font-light">Highly-customizable Android and iOS app solutions designed to streamline business operations and scale limitlessly.</p>
+                        </div>
+                        <div class="relative z-10 font-mono text-[10px] text-koraGold/50 uppercase tracking-[0.3em] font-bold mt-10">[ Module 02 ]</div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                        <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
+                                <i class="ph ph-paint-brush-broad text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight">UX/UI Design</h3>
+                            <p class="text-white/60 text-lg leading-relaxed font-light">Expert design techniques ensuring interactive, thoughtful, user-centric interfaces that profoundly enhance user experience.</p>
+                        </div>
+                        <div class="relative z-10 font-mono text-[10px] text-koraGold/50 uppercase tracking-[0.3em] font-bold mt-10">[ Module 03 ]</div>
+                    </div>
+                </div>
+
+                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                        <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                        <div class="relative z-10">
+                            <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
+                                <i class="ph ph-arrows-clockwise text-3xl"></i>
+                            </div>
+                            <h3 class="text-3xl font-black text-white mb-4 tracking-tight">App Modernization</h3>
+                            <p class="text-white/60 text-lg leading-relaxed font-light">Continuous integration, and strategic testing to make your platforms resilient, bug-free, and highly ROI-driven.</p>
+                        </div>
+                        <div class="relative z-10 font-mono text-[10px] text-koraGold/50 uppercase tracking-[0.3em] font-bold mt-10">[ Module 04 ]</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BHTOS SECTION -->
+    <section id="bhtos" class="py-32 bg-dark relative border-t border-white/5 z-20 overflow-hidden">
+        <div class="absolute top-1/2 left-0 w-full h-[600px] bg-emerald-900/10 blur-[150px] -skew-y-12 pointer-events-none -translate-y-1/2"></div>
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-20 items-center">
+                <div class="relative z-10">
+                    <div data-aos="fade-right" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 text-emerald-400 text-xs font-bold uppercase tracking-[0.2em] mb-8 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                        <i class="ph ph-stethoscope text-lg"></i> Health Tech OS
+                    </div>
+                    <h2 data-aos="fade-right" data-aos-delay="100" class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-[1.05]">
+                        BHTOS <br/>
+                        <span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-teal-700">Platform.</span>
+                    </h2>
+                    <p data-aos="fade-right" data-aos-delay="200" class="text-xl text-white/60 mb-12 font-light max-w-lg leading-relaxed">
+                        Solving the Dual Challenge: Data Governance & Stigma. Empowering healthcare providers with an autonomous, offline-first hybrid engine.
+                    </p>
+
+                    <div class="space-y-8">
+                        <div data-aos="fade-up" data-aos-delay="300" class="flex gap-6 items-start group">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                                <i class="ph ph-files text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2 tracking-tight">Electronic Medical Records</h4>
+                                <p class="text-white/50 font-light leading-relaxed">Secure, intelligent patient records with seamless AI sharing and aggregation.</p>
+                            </div>
+                        </div>
+                        <div data-aos="fade-up" data-aos-delay="400" class="flex gap-6 items-start group">
+                            <div class="w-14 h-14 rounded-2xl bg-emerald-500/10 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-110 transition-transform shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                                <i class="ph ph-currency-circle-dollar text-2xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-xl font-bold text-white mb-2 tracking-tight">Billing Automation</h4>
+                                <p class="text-white/50 font-light leading-relaxed">Plugging revenue leaks with automated invoice generation and management.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in-left" data-aos-duration="1000" class="relative z-10">
+                    <div class="p-[1px] rounded-[3rem] bg-gradient-to-br from-white/30 via-white/5 to-transparent shadow-[0_40px_100px_rgba(16,185,129,0.15)]">
+                        <div id="anonymize-care" class="bg-[#050907] rounded-[3rem] p-10 md:p-14 relative overflow-hidden backdrop-blur-3xl border border-emerald-500/20">
+                            <div class="absolute top-0 right-0 p-8">
+                                <div class="flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                                    <i class="ph ph-shield-check text-emerald-400 text-lg"></i>
+                                    <span class="text-[10px] font-bold text-emerald-400 uppercase tracking-[0.2em]">NDPA Compliant</span>
+                                </div>
+                            </div>
+
+                            <div class="mb-14 mt-6 md:mt-0">
+                                <h3 class="text-3xl font-black text-white mb-3 tracking-tight">AnonymizeCare Engine</h3>
+                                <p class="text-emerald-400/80 text-sm font-medium tracking-wide uppercase">Autonomous De-identification</p>
+                            </div>
+
+                            <div class="space-y-5">
+                                <div class="glass-card card-emerald rounded-2xl p-6 flex items-center gap-6 transform transition-all duration-500 hover:scale-[1.02] border-emerald-500/20">
+                                    <div class="relative w-14 h-14 flex items-center justify-center shrink-0">
+                                        <div class="absolute inset-0 bg-emerald-500/30 rounded-full animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]"></div>
+                                        <div class="relative w-full h-full bg-dark rounded-full border border-emerald-500/50 flex items-center justify-center">
+                                            <i class="ph ph-microphone text-2xl text-emerald-400"></i>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1">
+                                        <div class="text-[10px] font-bold text-emerald-400 mb-3 uppercase tracking-[0.2em]">7thSense AI Active</div>
+                                        <div class="h-2 w-full bg-white/5 rounded-full overflow-hidden border border-white/10">
+                                            <div class="h-full bg-gradient-to-r from-emerald-600 to-emerald-400 w-3/4 animate-[pulse_1.5s_ease-in-out_infinite]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="flex justify-center py-2 opacity-50">
+                                    <i class="ph ph-arrow-down text-2xl text-white"></i>
+                                </div>
+                                <div class="bg-emerald-950/40 border border-emerald-500/40 rounded-2xl p-6 transform transition-all duration-500 hover:scale-[1.02] shadow-[0_10px_30px_rgba(16,185,129,0.1)] relative overflow-hidden">
+                                    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(16,185,129,0.2),_transparent)] opacity-50"></div>
+                                    <div class="relative z-10 flex items-center gap-3 mb-4">
+                                        <i class="ph ph-database text-emerald-400 text-xl"></i>
+                                        <h4 class="text-emerald-400 font-bold text-[10px] uppercase tracking-[0.2em]">Structured Token Output</h4>
+                                    </div>
+                                    <p class="relative z-10 text-white/80 font-mono text-sm leading-relaxed">
+                                        Patient <span class="bg-emerald-500/20 text-emerald-300 px-1.5 py-0.5 rounded border border-emerald-500/30">[REDACTED]</span>. Diagnosis logged. Prescribing <span class="text-emerald-400 font-bold">[TOKEN: 7TH-XYZ]</span> for anonymous fulfillment via Advantage Network.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- BETOS SECTION -->
+    <section id="betos" class="py-32 bg-dark relative border-t border-white/5 z-20 overflow-hidden">
+        <div class="absolute bottom-0 right-0 w-3/4 h-[600px] bg-cyan-900/10 blur-[150px] pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-24 relative z-10">
+                <div data-aos="fade-up" class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-400 text-xs font-bold uppercase tracking-[0.2em] mb-8 shadow-[0_0_20px_rgba(6,182,212,0.1)]">
+                    <i class="ph ph-graduation-cap text-lg"></i> Ed Tech OS
+                </div>
+                <h2 data-aos="fade-up" data-aos-delay="100" class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter leading-[1.05]">
+                    BETOS <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-600">Platform.</span>
+                </h2>
+                <p data-aos="fade-up" data-aos-delay="200" class="text-xl text-white/60 font-light leading-relaxed">
+                    Deploying the Green Operating System to permanently restore examination credibility, eradicate malpractice, and drastically reduce operational costs.
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 relative z-10">
+                <div data-aos="fade-up" data-aos-delay="100" class="h-full glass-card card-cyan rounded-[2.5rem] p-10 flex flex-col hover:border-cyan-500/40 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center mb-8 relative z-10 shadow-inner group-hover:scale-110 transition-transform duration-500 text-cyan-400 group-hover:bg-cyan-500/10">
+                        <i class="ph ph-hard-drives text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2 relative z-10">gOS Core</h4>
+                    <p class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em] mb-6 relative z-10">Green Operating System</p>
+                    <p class="text-white/50 text-sm leading-relaxed relative z-10 font-light">The centralized hub eradicating malpractice and optimizing institutional resources globally.</p>
+                </div>
+                
+                <div data-aos="fade-up" data-aos-delay="200" class="h-full glass-card card-cyan rounded-[2.5rem] p-10 flex flex-col hover:border-cyan-500/40 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center mb-8 relative z-10 shadow-inner group-hover:scale-110 transition-transform duration-500 text-cyan-400 group-hover:bg-cyan-500/10">
+                        <i class="ph ph-book-open-text text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2 relative z-10">CAMS</h4>
+                    <p class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em] mb-6 relative z-10">Authoring Mgmt</p>
+                    <p class="text-white/50 text-sm leading-relaxed relative z-10 font-light">Secure question banking, intelligent moderation, and highly automated exam creation.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="300" class="h-full glass-card card-cyan rounded-[2.5rem] p-10 flex flex-col hover:border-cyan-500/40 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center mb-8 relative z-10 shadow-inner group-hover:scale-110 transition-transform duration-500 text-cyan-400 group-hover:bg-cyan-500/10">
+                        <i class="ph ph-fingerprint text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2 relative z-10">Biometric AMS</h4>
+                    <p class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em] mb-6 relative z-10">Attendance Tracking</p>
+                    <p class="text-white/50 text-sm leading-relaxed relative z-10 font-light">Geolocation & biometric validation ensuring absolute attendance credibility.</p>
+                </div>
+
+                <div data-aos="fade-up" data-aos-delay="400" class="h-full glass-card card-cyan rounded-[2.5rem] p-10 flex flex-col hover:border-cyan-500/40 hover:-translate-y-2 transition-all duration-500 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
+                    <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center mb-8 relative z-10 shadow-inner group-hover:scale-110 transition-transform duration-500 text-cyan-400 group-hover:bg-cyan-500/10">
+                        <i class="ph ph-monitor-play text-3xl"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold text-white mb-2 relative z-10">CMTS AutoTest</h4>
+                    <p class="text-[10px] font-bold text-cyan-400 uppercase tracking-[0.2em] mb-6 relative z-10">Centre Mgmt</p>
+                    <p class="text-white/50 text-sm leading-relaxed relative z-10 font-light">Live remote monitoring and simulation for vast computer-based testing networks.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- IMPACT METRICS -->
+    <section id="impact" class="py-32 bg-dark border-y border-white/5 relative z-20">
+        <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHBhdGggZD0iTTAgMGg0MHY0MEgweiIgZmlsbD0ibm9uZSIvPjxwYXRoIGQ9Ik0wIDEwaDQwTTAgMjBoNDBNMCAzMGg0ME0xMCAwdjQwTTIwIDB2NDBNMzAgMHY0MCIgc3Ryb2tlPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDMpIiBzdHJva2Utd2lkdGg9IjEiLz48L3N2Zz4=')] opacity-50"></div>
+        
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-20">
+                <div class="text-center flex flex-col items-center group">
+                    <div class="text-7xl md:text-8xl font-black tracking-tighter mb-4 text-white drop-shadow-2xl flex items-baseline">
+                        <span class="js-counter" data-target="8.2" data-decimals="1">0</span>
+                        <span class="text-4xl md:text-6xl text-white/30 ml-1 group-hover:text-white/50 transition-colors">M+</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Users Annually</div>
+                </div>
+                
+                <div class="text-center flex flex-col items-center group">
+                    <div class="text-7xl md:text-8xl font-black tracking-tighter mb-4 text-emerald-400 drop-shadow-2xl flex items-baseline">
+                        <span class="js-counter" data-target="80" data-decimals="0">0</span>
+                        <span class="text-4xl md:text-6xl text-emerald-400/30 ml-1 group-hover:text-emerald-400/50 transition-colors">%</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Malpractice Reduction</div>
+                </div>
+
+                <div class="text-center flex flex-col items-center group">
+                    <div class="text-7xl md:text-8xl font-black tracking-tighter mb-4 text-cyan-400 drop-shadow-2xl flex items-baseline">
+                        <span class="js-counter" data-target="60" data-decimals="0">0</span>
+                        <span class="text-4xl md:text-6xl text-cyan-400/30 ml-1 group-hover:text-cyan-400/50 transition-colors">%</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Cost Reduction</div>
+                </div>
+
+                <div class="text-center flex flex-col items-center group">
+                    <div class="text-7xl md:text-8xl font-black tracking-tighter mb-4 text-koraGold drop-shadow-2xl flex items-baseline">
+                        <span class="js-counter" data-target="40" data-decimals="0">0</span>
+                        <span class="text-4xl md:text-6xl text-koraGold/30 ml-1 group-hover:text-koraGold/50 transition-colors">%</span>
+                    </div>
+                    <div class="text-[10px] font-bold text-white/40 uppercase tracking-[0.2em]">Revenue Increase</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMPANY OVERVIEW -->
+    <section id="about" class="py-32 bg-dark relative z-20 border-t border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div data-aos="fade-right">
+                    <div class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/5 border border-white/10 text-white/80 text-xs font-bold uppercase tracking-[0.2em] mb-8">
+                        <i class="ph ph-buildings text-lg"></i> Company
+                    </div>
+                    <h2 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tighter">About Kora</h2>
+                    <p class="text-white/60 text-lg font-light leading-relaxed mb-8">Kora Systems Group is an elite technology syndicate focused on architecting digital foundations. We bridge the gap between complex governmental needs and modern, agile infrastructure, specifically engineering national-scale operating systems for Health (BHTOS) and Education (BETOS).</p>
+                </div>
+                <div data-aos="fade-left" class="glass-card p-10 rounded-[2.5rem]">
+                    <div class="grid grid-cols-2 gap-8 text-center md:text-left">
+                        <div>
+                            <div class="text-3xl font-black text-white mb-2">8.2M+</div>
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Users Annually</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-emerald-400 mb-2">950+</div>
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Pharmacy Network</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-cyan-400 mb-2">100%</div>
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest">NDPA Compliant</div>
+                        </div>
+                        <div>
+                            <div class="text-3xl font-black text-koraGold mb-2">Zero</div>
+                            <div class="text-[10px] font-bold text-white/40 uppercase tracking-widest">Initial Capex</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="philosophy" class="mt-32 pt-20 border-t border-white/5">
+                <div class="text-center max-w-3xl mx-auto mb-16">
+                    <h3 data-aos="fade-up" class="text-3xl font-black text-white mb-4 tracking-tight">Our Core Philosophy</h3>
+                    <p data-aos="fade-up" data-aos-delay="100" class="text-white/50 font-light leading-relaxed">We build autonomous, offline-first hybrid engines designed to solve systemic challenges in data governance, institutional credibility, and operational efficiency.</p>
+                </div>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div data-aos="fade-up" data-aos-delay="100" class="glass-card p-8 rounded-3xl hover:border-emerald-500/30 transition-all group">
+                        <div class="w-16 h-16 rounded-2xl bg-emerald-500/10 border border-emerald-500/20 mb-6 flex items-center justify-center text-emerald-400 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-shield-check text-3xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Data Governance & Privacy</h4>
+                        <p class="text-white/50 text-sm font-light leading-relaxed">Eradicating the liability of insecure data. We ensure strict NDPA compliance and eliminate patient stigmatization through our autonomous, real-time AnonymizeCare engine.</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="200" class="glass-card p-8 rounded-3xl hover:border-cyan-500/30 transition-all group">
+                        <div class="w-16 h-16 rounded-2xl bg-cyan-500/10 border border-cyan-500/20 mb-6 flex items-center justify-center text-cyan-400 group-hover:scale-110 transition-transform">
+                            <i class="ph ph-fingerprint text-3xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Institutional Integrity</h4>
+                        <p class="text-white/50 text-sm font-light leading-relaxed">Permanently restoring credibility to national frameworks. Our Green OS eradicates exam malpractice, leverages biometric geolocation, and deeply secures the authoring process.</p>
+                    </div>
+
+                    <div data-aos="fade-up" data-aos-delay="300" class="glass-card p-8 rounded-3xl hover:border-koraGold/30 transition-all group">
+                        <div class="w-16 h-16 rounded-2xl bg-koraGold/10 border border-koraGold/20 mb-6 flex items-center justify-center text-koraGold group-hover:scale-110 transition-transform">
+                            <i class="ph ph-chart-line-up text-3xl"></i>
+                        </div>
+                        <h4 class="text-xl font-bold text-white mb-3">Systemic Efficiency</h4>
+                        <p class="text-white/50 text-sm font-light leading-relaxed">Plugging revenue leaks and drastically reducing operational costs by 60% through end-to-end automation, seamless billing aggregation, and resilient offline-first infrastructures.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- RESOURCES & PARTNERS -->
+    <section id="resources" class="py-32 bg-[#050907] relative z-20 border-y border-white/5">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            <div id="partners" class="mb-32">
+                <h3 data-aos="fade-in" class="text-2xl font-black text-white mb-10 tracking-tight text-center uppercase text-[10px] tracking-[0.3em]">Trusted by National Institutions</h3>
+                <div data-aos="fade-in" data-aos-delay="100" class="flex flex-wrap justify-center items-center gap-8 md:gap-16 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
+                    <div class="text-2xl font-black tracking-tighter text-white">WAEC</div>
+                    <div class="text-2xl font-black tracking-tighter text-emerald-400">JAMB</div>
+                    <div class="text-2xl font-black tracking-tighter text-white">NECO</div>
+                    <div class="text-2xl font-black tracking-tighter text-cyan-400">JUPEB</div>
+                    <div class="text-2xl font-black tracking-tighter text-koraGold">NSITF</div>
+                    <div class="text-2xl font-black tracking-tighter text-white">PTDF</div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8">
+                <div id="case-studies" data-aos="fade-up" data-aos-delay="100" class="glass-card p-8 rounded-3xl hover:border-white/30 transition-all cursor-pointer">
+                    <i class="ph ph-briefcase text-3xl text-white mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Case Studies</h4>
+                    <p class="text-white/50 text-sm font-light">Explore how we implemented national-scale OS deployments with 99.99% uptime.</p>
+                </div>
+                <div id="documentation" data-aos="fade-up" data-aos-delay="200" class="glass-card p-8 rounded-3xl hover:border-white/30 transition-all cursor-pointer">
+                    <i class="ph ph-file-code text-3xl text-white mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Documentation</h4>
+                    <p class="text-white/50 text-sm font-light">Technical specs, API routes, and integration guides for the Core IT Ecosystem.</p>
+                </div>
+                <div id="security" data-aos="fade-up" data-aos-delay="300" class="glass-card p-8 rounded-3xl hover:border-white/30 transition-all cursor-pointer">
+                    <i class="ph ph-shield-check text-3xl text-white mb-6"></i>
+                    <h4 class="text-xl font-bold text-white mb-3">Security Overview</h4>
+                    <p class="text-white/50 text-sm font-light">Learn about our NDPA compliance, encryption standards, and data governance policies.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- LEGAL -->
+    <section id="legal" class="py-20 bg-dark relative z-20 border-b border-white/5">
+        <div class="max-w-4xl mx-auto px-6 lg:px-8 space-y-12">
+            <div id="privacy" data-aos="fade-up" class="glass-card p-8 rounded-2xl">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><i class="ph ph-lock-key text-koraGold"></i> Privacy Policy</h3>
+                <p class="text-white/50 text-sm font-light leading-relaxed">Kora Systems respects your privacy. We strictly adhere to global data protection laws (including NDPA). Data processed via BHTOS and BETOS platforms is fully anonymized and end-to-end encrypted. We never sell your personal information. For a full breakdown of data usage, please contact our Data Protection Officer.</p>
+            </div>
+            <div id="terms" data-aos="fade-up" data-aos-delay="100" class="glass-card p-8 rounded-2xl">
+                <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2"><i class="ph ph-file-text text-koraGold"></i> Terms of Service</h3>
+                <p class="text-white/50 text-sm font-light leading-relaxed">By accessing Kora Systems platforms, you agree to bound by our enterprise agreements. Unauthorized access, reverse engineering, or malicious testing of the infrastructure is strictly prohibited. Service level agreements (SLAs) guarantee 99.9% uptime for core modules.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ENHANCED FOOTER SECTION -->
+    <footer class="bg-dark relative overflow-hidden z-20 pt-32 pb-12">
+        <!-- Glowing background gradient -->
+        <div class="absolute bottom-[0%] left-1/2 -translate-x-1/2 w-[100vw] h-[50vw] bg-gradient-to-t from-koraGold/10 via-emerald-600/5 to-transparent blur-[150px] rounded-full pointer-events-none"></div>
+
+        <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
+            
+            <!-- Pre-Footer CTA -->
+            <div id="contact" class="text-center max-w-3xl mx-auto mb-32">
+                <h2 data-aos="fade-up" class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter drop-shadow-2xl">
+                    Ready to Automate?
+                </h2>
+                <p data-aos="fade-up" data-aos-delay="100" class="text-xl text-white/50 mb-10 font-light leading-relaxed">
+                    Join thousands of institutions transforming Africa's infrastructure. From Custom ERPs to National Health Systems.
+                </p>
+
+                <form data-aos="zoom-in" data-aos-delay="200" class="max-w-lg mx-auto relative group" onsubmit="event.preventDefault();">
+                    <div class="relative flex items-center">
+                        <i class="ph ph-envelope-simple absolute left-6 text-2xl text-white/30 group-focus-within:text-koraGold transition-colors"></i>
+                        <input type="email" placeholder="Enter your work email" class="w-full pl-16 pr-44 py-5 rounded-full glass-card text-white placeholder-white/30 focus:outline-none focus:border-koraGold focus:ring-1 focus:ring-koraGold transition-all text-sm font-light bg-[#050907]/50" required>
+                        <button type="submit" class="absolute right-2 top-2 bottom-2 px-8 rounded-full bg-white text-black font-bold text-[10px] uppercase tracking-[0.2em] hover:bg-koraGold hover:text-white transition-all shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_20px_rgba(193,155,68,0.3)]">
+                            Initiate
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Footer Main Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-8 pt-20 border-t border-white/10 mb-16">
+                
+                <!-- Column 1: Brand Info -->
+                <div class="lg:col-span-4 pr-4">
+                    <div class="flex items-center gap-3 mb-8 cursor-default">
+                        <div class="relative w-10 h-10 bg-koraBlue rounded-[10px] flex items-center justify-center overflow-hidden border border-white/10 shadow-lg">
+                            <div class="absolute w-[16px] h-[16px] border-[1.5px] border-koraGold rotate-45"></div>
+                            <div class="absolute w-[6px] h-[6px] bg-koraGold rounded-full"></div>
+                        </div>
+                        <span class="text-xl font-black tracking-tighter text-white">
+                            KORA<span class="font-light text-white/40">SYSTEMS</span>
+                        </span>
+                    </div>
+                    <p class="text-white/50 text-sm font-light leading-relaxed mb-8 max-w-sm">
+                        Architecting the digital foundation of Africa. We build highly resilient, secure operating systems and IT infrastructure for modern enterprises, healthcare, and education.
+                    </p>
+                    
+                    <!-- Social Icons -->
+                    <div class="flex gap-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-koraGold hover:border-koraGold/30 hover:bg-koraGold/10 transition-all group">
+                            <i class="ph ph-twitter-logo text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-koraGold hover:border-koraGold/30 hover:bg-koraGold/10 transition-all group">
+                            <i class="ph ph-linkedin-logo text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-koraGold hover:border-koraGold/30 hover:bg-koraGold/10 transition-all group">
+                            <i class="ph ph-github-logo text-lg group-hover:scale-110 transition-transform"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden lg:block lg:col-span-1"></div>
+
+                <!-- Column 2: Platform -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Platforms</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#core-it" class="text-white/50 hover:text-koraGold text-sm font-light transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-xs"></i> Core IT Ecosystem</a></li>
+                        <li><a href="#bhtos" class="text-white/50 hover:text-emerald-400 text-sm font-light transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-xs"></i> BHTOS (Healthcare)</a></li>
+                        <li><a href="#betos" class="text-white/50 hover:text-cyan-400 text-sm font-light transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-xs"></i> BETOS (Education)</a></li>
+                        <li><a href="#anonymize-care" class="text-white/50 hover:text-white text-sm font-light transition-colors flex items-center gap-2"><i class="ph ph-caret-right text-xs"></i> AnonymizeCare Engine</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 3: Company -->
+                <div class="lg:col-span-2">
+                    <h4 class="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Company</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#about" class="text-white/50 hover:text-white text-sm font-light transition-colors">About Kora</a></li>
+                        <li><a href="#philosophy" class="text-white/50 hover:text-white text-sm font-light transition-colors">Core Philosophy</a></li>
+                        <li><a href="#impact" class="text-white/50 hover:text-white text-sm font-light transition-colors">National Impact</a></li>
+                        <li><a href="#partners" class="text-white/50 hover:text-white text-sm font-light transition-colors">Partner Network</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: Resources & Legal -->
+                <div class="lg:col-span-3">
+                    <h4 class="text-[10px] font-bold text-white uppercase tracking-[0.2em] mb-6">Resources</h4>
+                    <ul class="space-y-4">
+                        <li><a href="#case-studies" class="text-white/50 hover:text-white text-sm font-light transition-colors">Case Studies</a></li>
+                        <li><a href="#documentation" class="text-white/50 hover:text-white text-sm font-light transition-colors">Documentation</a></li>
+                        <li><a href="#security" class="text-white/50 hover:text-white text-sm font-light transition-colors">Security Overview</a></li>
+                        <li><a href="#contact" class="text-white/50 hover:text-white text-sm font-light transition-colors">Contact Support</a></li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <!-- Bottom Bar -->
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-white/5 text-sm">
+                
+                <p class="text-white/40 font-light text-xs mb-4 md:mb-0">
+                    &copy; 2026 Kora Systems Group. All rights reserved.
+                </p>
+
+                <div class="flex items-center gap-6 text-xs font-light">
+                    <a href="#privacy" class="text-white/40 hover:text-white transition-colors">Privacy Policy</a>
+                    <a href="#terms" class="text-white/40 hover:text-white transition-colors">Terms of Service</a>
+                    <div class="w-[1px] h-3 bg-white/20 hidden md:block"></div>
+                    
+                    <!-- System Status Indicator -->
+                    <div class="flex items-center gap-2 group cursor-pointer">
+                        <div class="relative flex h-2 w-2">
+                            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                            <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+                        </div>
+                        <span class="text-white/40 group-hover:text-emerald-400 transition-colors">All Systems Operational</span>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+
+    <script>
+        // 1. Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 50,
+        });
+
+        // 2. Navbar blur on scroll
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('bg-dark/80', 'backdrop-blur-2xl', 'border-white/5');
+                navbar.classList.remove('border-transparent', 'py-6');
+                navbar.classList.add('py-4');
+            } else {
+                navbar.classList.remove('bg-dark/80', 'backdrop-blur-2xl', 'border-white/5', 'py-4');
+                navbar.classList.add('border-transparent', 'py-6');
+            }
+        });
+
+        // 3. Vanilla JS 3D Mouse Parallax (Hero Section)
+        const heroContent = document.getElementById('hero-content');
+        if (window.innerWidth > 768 && heroContent) {
+            window.addEventListener('mousemove', (e) => {
+                const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
+                const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
+
+                heroContent.style.transform = `rotateY(${xPos * 8}deg) rotateX(${-yPos * 8}deg) translate(${xPos * 10}px, ${yPos * 10}px)`;
+            });
+            window.addEventListener('mouseleave', () => {
+                heroContent.style.transform = `rotateY(0deg) rotateX(0deg) translate(0, 0)`;
+            });
+        }
+
+        // 4. Vanilla JS Impact Counters
+        const counters = document.querySelectorAll('.js-counter');
+        const observerOptions = { threshold: 0.5 };
+        
+        const counterObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseFloat(counter.getAttribute('data-target'));
+                    const decimals = parseInt(counter.getAttribute('data-decimals'));
+                    const duration = 2000;
+                    const frameDuration = 1000 / 60;
+                    const totalFrames = Math.round(duration / frameDuration);
+                    let frame = 0;
+                    
+                    const easeOutQuad = t => t * (2 - t);
+                    
+                    const counterInterval = setInterval(() => {
+                        frame++;
+                        const progress = easeOutQuad(frame / totalFrames);
+                        const currentVal = target * progress;
+                        
+                        if (frame === totalFrames) {
+                            clearInterval(counterInterval);
+                            counter.innerText = target.toFixed(decimals);
+                        } else {
+                            counter.innerText = currentVal.toFixed(decimals);
+                        }
+                    }, frameDuration);
+                    
+                    observer.unobserve(counter);
+                }
+            });
+        }, observerOptions);
+
+        counters.forEach(counter => counterObserver.observe(counter));
+
+        // 5. Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const closeMenuBtn = document.getElementById('close-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        const toggleMenu = () => {
+            mobileMenu.classList.toggle('hidden');
+            mobileMenu.classList.toggle('flex');
+            setTimeout(() => {
+                mobileMenu.classList.toggle('opacity-0');
+            }, 10);
+        };
+
+        mobileMenuBtn.addEventListener('click', toggleMenu);
+        closeMenuBtn.addEventListener('click', toggleMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+
+        // 6. GSAP Isolated Horizontal Scroll for Core IT
+        if (typeof gsap !== 'undefined') {
+            gsap.registerPlugin(ScrollTrigger);
+            
+            setTimeout(() => {
+                ScrollTrigger.refresh();
+                
+                let mm = gsap.matchMedia();
+                
+                mm.add("(min-width: 1024px)", () => {
+                    const track = document.getElementById('it-track');
+                    const pinContainer = document.getElementById('core-it-pin');
+                    
+                    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+                    
+                    const tween = gsap.to(track, {
+                        x: getScrollAmount,
+                        ease: "none"
+                    });
+
+                    ScrollTrigger.create({
+                        trigger: pinContainer,
+                        start: "center center",
+                        end: () => `+=${Math.abs(getScrollAmount())}`,
+                        pin: true,
+                        animation: tween,
+                        scrub: 1,
+                        invalidateOnRefresh: true
+                    });
+                });
+            }, 800);
+        }
+    </script>
+</body>
+</html>
