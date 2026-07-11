@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -190,8 +191,7 @@
         </div>
 
         <div id="hero-content" class="tilt-element relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center w-full pointer-events-none">
-            <!-- INSTANT LOAD: Removed all data-aos delays and fade properties -->
-            <div class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
+            <div data-aos="zoom-in" data-aos-delay="200" class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
                 <div class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-koraGold opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-koraGold"></span>
@@ -200,18 +200,18 @@
             </div>
             
             <h1 class="text-[11vw] sm:text-6xl md:text-8xl lg:text-[8rem] font-black text-white tracking-tighter mb-8 leading-[1.05] uppercase drop-shadow-2xl" style="transform: translateZ(60px);">
-                <div>Architecting</div>
-                <div class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
+                <div data-aos="fade-up" data-aos-delay="400">Architecting</div>
+                <div data-aos="fade-up" data-aos-delay="600" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
                     The Future.
                 </div>
             </h1>
 
-            <p class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
+            <p data-aos="fade-up" data-aos-delay="800" class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
                 Kora Systems Group merges <strong class="text-koraGold font-medium">World-Class IT Capabilities</strong> with national-scale operating systems for <strong class="text-emerald-400 font-medium">Healthcare</strong> and <strong class="text-cyan-400 font-medium">Education</strong>.
             </p>
         </div>
 
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
+        <div data-aos="fade-in" data-aos-delay="1000" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
             <span class="text-[10px] uppercase font-bold tracking-[0.4em] text-white">Scroll</span>
             <div class="w-[2px] h-12 bg-gradient-to-b from-koraGold to-transparent rounded-full"></div>
         </div>
@@ -732,14 +732,19 @@
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <script>
-        // 1. INSTANT ANIMATION MAPPING & INDEPENDENT LOGIC
+        // 1. INSTANT ANIMATION MAPPING 
+        // This runs instantly, preventing text from ever hanging or staying invisible.
         document.addEventListener('DOMContentLoaded', () => {
             AOS.init({
                 duration: 800,
                 once: true,
                 offset: 50,
             });
+        });
 
+        // 2. INDEPENDENT MOBILE MENU LOGIC
+        // Runs immediately regardless of loaders or animations.
+        document.addEventListener('DOMContentLoaded', () => {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const closeMenuBtn = document.getElementById('close-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
@@ -764,7 +769,29 @@
                 closeMenuBtn.addEventListener('click', toggleMenu);
                 mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
             }
+        });
 
+        // 3. FAST PRELOADER SEQUENCE
+        window.addEventListener('load', () => {
+            const body = document.getElementById('body');
+            const preloader = document.getElementById('preloader');
+            const navbar = document.getElementById('navbar');
+
+            // Quick 0.3s timeout just for visual effect
+            setTimeout(() => {
+                // Restore scroll and reveal
+                body.classList.remove('overflow-hidden', 'no-scroll');
+                preloader.style.opacity = '0';
+                preloader.style.pointerEvents = 'none';
+                navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
+                
+                // Final calculation refresh now that the screen is fully visible
+                AOS.refresh();
+            }, 300); 
+        });
+
+        // 4. PARALLAX & NAVBAR SCROLL EFFECTS
+        document.addEventListener('DOMContentLoaded', () => {
             const heroContent = document.getElementById('hero-content');
             if (window.innerWidth > 768 && heroContent) {
                 window.addEventListener('mousemove', (e) => {
@@ -788,7 +815,7 @@
                 }
             });
 
-            // Counters logic
+            // 5. STAT COUNTERS
             const counters = document.querySelectorAll('.js-counter');
             const observerOptions = { threshold: 0.5 };
             const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -820,27 +847,9 @@
             }, observerOptions);
             counters.forEach(counter => counterObserver.observe(counter));
         });
-
-        // 2. FAST PRELOADER SEQUENCE
-        window.addEventListener('load', () => {
-            const body = document.getElementById('body');
-            const preloader = document.getElementById('preloader');
-            const navbar = document.getElementById('navbar');
-
-            // Quick 0.3s timeout just for visual effect
-            setTimeout(() => {
-                // Restore scroll and reveal
-                body.classList.remove('overflow-hidden', 'no-scroll');
-                preloader.style.opacity = '0';
-                preloader.style.pointerEvents = 'none';
-                navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
-                
-                // Final calculation refresh now that the screen is fully visible
-                AOS.refresh();
-            }, 300); 
-        });
     </script>
 </body>
 </html>
 
 
+```
