@@ -121,22 +121,16 @@
 <body class="antialiased no-scroll" id="body">
 
     <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[9999] bg-[#020204] flex flex-col items-center justify-center transition-all duration-700 ease-in-out">
-        
-        <!-- Large Animated Logo -->
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-[#020204] flex flex-col items-center justify-center transition-opacity duration-700 ease-in-out">
         <div class="relative w-28 h-28 bg-koraBlue rounded-[1.8rem] flex items-center justify-center overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(193,155,68,0.15)] mb-8">
             <div class="absolute w-[50px] h-[50px] border-[2px] border-koraGold rotate-45 animate-[spin_3s_linear_infinite]"></div>
             <div class="absolute w-[50px] h-[50px] border-[2px] border-koraGold/20 rotate-45 animate-[spin_5s_linear_infinite_reverse]"></div>
             <div class="absolute w-[24px] h-[24px] bg-koraGold rounded-full animate-ping opacity-60"></div>
             <div class="absolute w-[18px] h-[18px] bg-koraGold rounded-full shadow-[0_0_20px_rgba(193,155,68,1)]"></div>
         </div>
-        
-        <!-- Brand Name -->
         <div class="text-3xl font-black tracking-tighter text-white mb-6">
             KORA<span class="font-light text-white/40">SYSTEMS</span>
         </div>
-        
-        <!-- Progress Bar & Text -->
         <div class="flex flex-col items-center gap-3">
             <span class="text-[10px] font-bold text-koraGold uppercase tracking-[0.4em] animate-pulse">Initializing Core Infrastructure</span>
             <div class="w-48 h-[2px] bg-white/10 relative overflow-hidden rounded-full">
@@ -149,7 +143,7 @@
     <div class="tech-grid"></div>
 
     <!-- NAVBAR -->
-    <nav id="navbar" class="fixed w-full z-50 transition-all duration-500 py-6 border-b border-transparent opacity-0 translate-y-[-20px]" data-aos="fade-down" data-aos-duration="1000">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-700 py-6 border-b border-transparent opacity-0 translate-y-[-20px]">
         <div class="max-w-7xl mx-auto px-6 lg:px-8 flex justify-between items-center relative z-10">
             <div class="flex items-center gap-4 group cursor-pointer">
                 <div class="relative w-12 h-12 bg-koraBlue rounded-[14px] flex items-center justify-center overflow-hidden border border-white/10 shadow-lg group-hover:shadow-koraGold/20 transition-all duration-500">
@@ -210,7 +204,8 @@
         </div>
 
         <div id="hero-content" class="tilt-element relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center w-full pointer-events-none">
-            <div data-aos="zoom-in" data-aos-duration="1000" class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
+            <!-- Timed exactly with the loader fading out -->
+            <div data-aos="zoom-in" data-aos-delay="400" class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
                 <div class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-koraGold opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-koraGold"></span>
@@ -219,18 +214,18 @@
             </div>
             
             <h1 class="text-[11vw] sm:text-6xl md:text-8xl lg:text-[8rem] font-black text-white tracking-tighter mb-8 leading-[1.05] uppercase drop-shadow-2xl" style="transform: translateZ(60px);">
-                <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="100">Architecting</div>
-                <div data-aos="fade-up" data-aos-duration="1200" data-aos-delay="300" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
+                <div data-aos="fade-up" data-aos-delay="600">Architecting</div>
+                <div data-aos="fade-up" data-aos-delay="800" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
                     The Future.
                 </div>
             </h1>
 
-            <p data-aos="fade-up" data-aos-duration="1200" data-aos-delay="500" class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
+            <p data-aos="fade-up" data-aos-delay="1000" class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
                 Kora Systems Group merges <strong class="text-koraGold font-medium">World-Class IT Capabilities</strong> with national-scale operating systems for <strong class="text-emerald-400 font-medium">Healthcare</strong> and <strong class="text-cyan-400 font-medium">Education</strong>.
             </p>
         </div>
 
-        <div data-aos="fade-in" data-aos-duration="1500" data-aos-delay="1000" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
+        <div data-aos="fade-in" data-aos-delay="1400" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
             <span class="text-[10px] uppercase font-bold tracking-[0.4em] text-white">Scroll</span>
             <div class="w-[2px] h-12 bg-gradient-to-b from-koraGold to-transparent rounded-full"></div>
         </div>
@@ -347,7 +342,7 @@
                     </div>
                 </div>
 
-                <div data-aos="zoom-in-left" data-aos-duration="1000" class="relative z-10">
+                <div data-aos="zoom-in-left" class="relative z-10">
                     <div class="p-[1px] rounded-[3rem] bg-gradient-to-br from-white/30 via-white/5 to-transparent shadow-[0_40px_100px_rgba(16,185,129,0.15)]">
                         <div id="anonymize-care" class="bg-[#050907] rounded-[3rem] p-10 md:p-14 relative overflow-hidden backdrop-blur-3xl border border-emerald-500/20">
                             
@@ -736,87 +731,80 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-        // 1. Loading Sequence & Initialization
+        // 1. IMMEDIATE AOS INITIALIZATION
+        // This ensures elements have their start positions immediately, preventing the "hinged" look.
+        AOS.init({
+            duration: 800, // Faster, snappier animations
+            once: true,
+            offset: 50,
+        });
+
+        // 2. LOADER LOGIC
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             const body = document.getElementById('body');
             const navbar = document.getElementById('navbar');
             
-            // Allow the user to see the loader for a brief moment
+            // Minimal 0.5s delay just so the user sees the cool loader effect after the page actually loads
             setTimeout(() => {
-                // Fade out loader
                 preloader.style.opacity = '0';
                 preloader.style.pointerEvents = 'none';
                 
-                // Re-enable scrolling
                 body.classList.remove('no-scroll');
-
-                // Reveal Navbar smoothly
                 navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
-
-                // Initialize animations ONLY after loader fades to prevent them firing in the background
-                setTimeout(() => {
-                    initAnimations();
-                }, 300);
-
-            }, 1800); // 1.8 second simulated loading time
+                
+                // Refresh AOS so scroll triggers align perfectly after scroll is restored
+                AOS.refresh();
+                
+                // Initialize GSAP after loader is gone
+                initGSAP();
+            }, 500); 
         });
 
-        // 2. Wrap existing logic in init function
-        function initAnimations() {
-            // AOS Init
-            AOS.init({
-                duration: 1000,
-                once: true,
-                offset: 50,
-            });
-
-            // Vanilla JS 3D Mouse Parallax (Hero Section)
-            const heroContent = document.getElementById('hero-content');
-            if (window.innerWidth > 768 && heroContent) {
-                window.addEventListener('mousemove', (e) => {
-                    const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
-                    const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
-                    heroContent.style.transform = `rotateY(${xPos * 8}deg) rotateX(${-yPos * 8}deg) translate(${xPos * 10}px, ${yPos * 10}px)`;
-                });
-                window.addEventListener('mouseleave', () => {
-                    heroContent.style.transform = `rotateY(0deg) rotateX(0deg) translate(0, 0)`;
-                });
-            }
-
-            // GSAP Isolated Horizontal Scroll for Core IT
+        // 3. GSAP Isolated Horizontal Scroll for Core IT
+        function initGSAP() {
             if (typeof gsap !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
+                ScrollTrigger.refresh();
                 
-                // Slight delay to ensure AOS has rendered correct heights before GSAP calculates pins
-                setTimeout(() => {
-                    ScrollTrigger.refresh();
-                    let mm = gsap.matchMedia();
-                    mm.add("(min-width: 1024px)", () => {
-                        const track = document.getElementById('it-track');
-                        const pinContainer = document.getElementById('core-it-pin');
-                        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
-                        
-                        const tween = gsap.to(track, {
-                            x: getScrollAmount,
-                            ease: "none"
-                        });
-
-                        ScrollTrigger.create({
-                            trigger: pinContainer,
-                            start: "center center",
-                            end: () => `+=${Math.abs(getScrollAmount())}`,
-                            pin: true,
-                            animation: tween,
-                            scrub: 1,
-                            invalidateOnRefresh: true
-                        });
+                let mm = gsap.matchMedia();
+                mm.add("(min-width: 1024px)", () => {
+                    const track = document.getElementById('it-track');
+                    const pinContainer = document.getElementById('core-it-pin');
+                    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+                    
+                    const tween = gsap.to(track, {
+                        x: getScrollAmount,
+                        ease: "none"
                     });
-                }, 500);
+
+                    ScrollTrigger.create({
+                        trigger: pinContainer,
+                        start: "center center",
+                        end: () => `+=${Math.abs(getScrollAmount())}`,
+                        pin: true,
+                        animation: tween,
+                        scrub: 1,
+                        invalidateOnRefresh: true
+                    });
+                });
             }
         }
 
-        // 3. Navbar blur on scroll
+        // 4. Vanilla JS 3D Mouse Parallax (Hero Section)
+        const heroContent = document.getElementById('hero-content');
+        if (window.innerWidth > 768 && heroContent) {
+            window.addEventListener('mousemove', (e) => {
+                const xPos = (e.clientX / window.innerWidth - 0.5) * 2;
+                const yPos = (e.clientY / window.innerHeight - 0.5) * 2;
+                heroContent.style.transform = `rotateY(${xPos * 8}deg) rotateX(${-yPos * 8}deg) translate(${xPos * 10}px, ${yPos * 10}px)`;
+            });
+            window.addEventListener('mouseleave', () => {
+                heroContent.style.transform = `rotateY(0deg) rotateX(0deg) translate(0, 0)`;
+            });
+        }
+
+        // 5. Navbar blur on scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -829,7 +817,7 @@
             }
         });
 
-        // 4. Vanilla JS Impact Counters
+        // 6. Vanilla JS Impact Counters
         const counters = document.querySelectorAll('.js-counter');
         const observerOptions = { threshold: 0.5 };
         
@@ -866,7 +854,7 @@
 
         counters.forEach(counter => counterObserver.observe(counter));
 
-        // 5. Mobile Menu Toggle Logic
+        // 7. Mobile Menu Toggle Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
