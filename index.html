@@ -118,10 +118,10 @@
         ::-webkit-scrollbar-thumb:hover { background: #555; }
     </style>
 </head>
-<body class="antialiased no-scroll" id="body">
+<body class="antialiased overflow-hidden no-scroll" id="body">
 
     <!-- PRELOADER -->
-    <div id="preloader" class="fixed inset-0 z-[9999] bg-[#020204] flex flex-col items-center justify-center transition-opacity duration-700 ease-in-out">
+    <div id="preloader" class="fixed inset-0 z-[9999] bg-[#020204] flex flex-col items-center justify-center transition-opacity duration-500 ease-in-out">
         <div class="relative w-28 h-28 bg-koraBlue rounded-[1.8rem] flex items-center justify-center overflow-hidden border border-white/10 shadow-[0_0_50px_rgba(193,155,68,0.15)] mb-8">
             <div class="absolute w-[50px] h-[50px] border-[2px] border-koraGold rotate-45 animate-[spin_3s_linear_infinite]"></div>
             <div class="absolute w-[50px] h-[50px] border-[2px] border-koraGold/20 rotate-45 animate-[spin_5s_linear_infinite_reverse]"></div>
@@ -216,22 +216,23 @@
         </div>
     </section>
 
-    <!-- CORE IT CAPABILITIES (Horizontal Scroll Enabled Perfectly) -->
-    <section id="core-it" class="bg-dark relative border-t border-white/5 z-20 overflow-hidden">
-        <div id="core-it-pin" class="min-h-screen flex flex-col justify-center relative w-full py-20 lg:py-0">
-            <div class="lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[5vw] xl:left-[10vw] z-30 px-6 lg:px-0 mb-12 lg:mb-0 w-full lg:w-auto text-center lg:text-left pointer-events-none">
-                <h2 data-aos="fade-right" class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter drop-shadow-lg leading-tight">
-                    Core IT<br/><span class="text-koraGold">Capabilities.</span>
+    <!-- CORE IT CAPABILITIES (Restored CSS Grid - No GSAP) -->
+    <section id="core-it" class="py-32 bg-dark relative border-t border-white/5 z-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
+                <h2 data-aos="fade-up" class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter drop-shadow-lg leading-tight mb-6">
+                    Core IT <span class="text-koraGold">Capabilities.</span>
                 </h2>
-                <p data-aos="fade-right" data-aos-delay="100" class="text-white/50 mt-4 max-w-sm mx-auto lg:mx-0 font-light leading-relaxed text-lg">
+                <p data-aos="fade-up" data-aos-delay="100" class="text-white/50 text-lg font-light leading-relaxed">
                     The foundational tech infrastructure powering startups, enterprises, and national platforms.
                 </p>
             </div>
 
-            <div id="it-track" class="flex flex-col lg:flex-row gap-8 lg:gap-10 px-6 lg:px-0 lg:pl-[40vw] xl:pl-[35vw] lg:pr-[15vw] w-full lg:w-max items-center h-auto">
-                <!-- Card 1 -->
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                
+                <div data-aos="fade-up" data-aos-delay="100" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -244,9 +245,8 @@
                     </div>
                 </div>
 
-                <!-- Card 2 -->
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                <div data-aos="fade-up" data-aos-delay="200" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -259,9 +259,8 @@
                     </div>
                 </div>
 
-                <!-- Card 3 -->
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                <div data-aos="fade-up" data-aos-delay="300" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -274,9 +273,8 @@
                     </div>
                 </div>
 
-                <!-- Card 4 -->
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                <div data-aos="fade-up" data-aos-delay="400" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -288,6 +286,7 @@
                         <div class="relative z-10 font-mono text-[10px] text-koraGold/50 uppercase tracking-[0.3em] font-bold mt-10">[ Module 04 ]</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -608,7 +607,7 @@
 
         <div class="max-w-7xl mx-auto px-6 lg:px-8 relative z-10">
             
-            <div class="text-center max-w-3xl mx-auto mb-32">
+            <div id="contact" class="text-center max-w-3xl mx-auto mb-32">
                 <h2 data-aos="fade-up" class="text-5xl md:text-7xl font-black text-white mb-8 tracking-tighter drop-shadow-2xl">
                     Ready to Automate?
                 </h2>
@@ -730,11 +729,20 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-        // 1. INDEPENDENT MOBILE MENU LOGIC
+        // 1. INSTANT ANIMATION MAPPING 
+        // This runs instantly, preventing text from ever hanging or staying invisible.
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 800,
+                once: true,
+                offset: 50,
+            });
+        });
+
+        // 2. INDEPENDENT MOBILE MENU LOGIC
+        // Runs immediately regardless of loaders or animations.
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const closeMenuBtn = document.getElementById('close-menu-btn');
@@ -762,69 +770,26 @@
             }
         });
 
-        // 2. PERFECTED LOADING SEQUENCE (Solves AOS/GSAP Conflict)
+        // 3. FAST PRELOADER SEQUENCE
         window.addEventListener('load', () => {
             const body = document.getElementById('body');
             const preloader = document.getElementById('preloader');
             const navbar = document.getElementById('navbar');
 
+            // Quick 0.3s timeout just for visual effect
             setTimeout(() => {
-                // Step A: Restore scrolling to unlock browser height mapping
+                // Restore scroll and reveal
                 body.classList.remove('overflow-hidden', 'no-scroll');
-
-                // Step B: Set up GSAP Horizontal Scroll FIRST
-                if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                    gsap.registerPlugin(ScrollTrigger);
-                    let mm = gsap.matchMedia();
-                    
-                    mm.add("(min-width: 1024px)", () => {
-                        const track = document.getElementById('it-track');
-                        const pinContainer = document.getElementById('core-it-pin');
-                        
-                        if(track && pinContainer) {
-                            const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
-                            
-                            gsap.to(track, {
-                                x: getScrollAmount,
-                                ease: "none",
-                                scrollTrigger: {
-                                    trigger: pinContainer,
-                                    start: "center center",
-                                    end: () => `+=${Math.abs(getScrollAmount())}`,
-                                    pin: true,
-                                    scrub: 1,
-                                    invalidateOnRefresh: true
-                                }
-                            });
-                        }
-                    });
-                }
-
-                // Step C: Init AOS only AFTER GSAP has injected its spacers
-                setTimeout(() => {
-                    AOS.init({
-                        duration: 800,
-                        once: true,
-                        offset: 50,
-                    });
-
-                    // THE MAGIC BULLET: Keep AOS and GSAP fully synchronized
-                    if (typeof ScrollTrigger !== 'undefined') {
-                        ScrollTrigger.addEventListener('refresh', () => AOS.refresh());
-                        ScrollTrigger.refresh();
-                    }
-
-                    // Fade out loader & reveal navbar
-                    preloader.style.opacity = '0';
-                    preloader.style.pointerEvents = 'none';
-                    navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
-                    
-                }, 100);
-
-            }, 500); // Visual loader timeout
+                preloader.style.opacity = '0';
+                preloader.style.pointerEvents = 'none';
+                navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
+                
+                // Final calculation refresh now that the screen is fully visible
+                AOS.refresh();
+            }, 300); 
         });
 
-        // 3. PARALLAX & NAVBAR SCROLL EFFECTS
+        // 4. PARALLAX & NAVBAR SCROLL EFFECTS
         document.addEventListener('DOMContentLoaded', () => {
             const heroContent = document.getElementById('hero-content');
             if (window.innerWidth > 768 && heroContent) {
@@ -849,7 +814,7 @@
                 }
             });
 
-            // 4. STAT COUNTERS
+            // 5. STAT COUNTERS
             const counters = document.querySelectorAll('.js-counter');
             const observerOptions = { threshold: 0.5 };
             const counterObserver = new IntersectionObserver((entries, observer) => {
