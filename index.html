@@ -205,7 +205,7 @@
 
         <div id="hero-content" class="tilt-element relative z-20 max-w-7xl mx-auto px-6 lg:px-8 text-center w-full pointer-events-none">
             <!-- Timed exactly with the loader fading out -->
-            <div data-aos="zoom-in" data-aos-delay="400" class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
+            <div data-aos="zoom-in" data-aos-delay="200" class="pointer-events-auto inline-flex items-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-koraGold/20 backdrop-blur-xl mb-10 shadow-[0_0_30px_rgba(193,155,68,0.1)]" style="transform: translateZ(20px);">
                 <div class="relative flex h-2.5 w-2.5">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-koraGold opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-koraGold"></span>
@@ -214,18 +214,18 @@
             </div>
             
             <h1 class="text-[11vw] sm:text-6xl md:text-8xl lg:text-[8rem] font-black text-white tracking-tighter mb-8 leading-[1.05] uppercase drop-shadow-2xl" style="transform: translateZ(60px);">
-                <div data-aos="fade-up" data-aos-delay="600">Architecting</div>
-                <div data-aos="fade-up" data-aos-delay="800" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
+                <div data-aos="fade-up" data-aos-delay="400">Architecting</div>
+                <div data-aos="fade-up" data-aos-delay="600" class="text-transparent bg-clip-text bg-gradient-to-r from-white via-white/90 to-white/20 pb-2">
                     The Future.
                 </div>
             </h1>
 
-            <p data-aos="fade-up" data-aos-delay="1000" class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
+            <p data-aos="fade-up" data-aos-delay="800" class="max-w-3xl mx-auto text-xl md:text-2xl text-white/60 mb-12 font-light leading-relaxed" style="transform: translateZ(30px);">
                 Kora Systems Group merges <strong class="text-koraGold font-medium">World-Class IT Capabilities</strong> with national-scale operating systems for <strong class="text-emerald-400 font-medium">Healthcare</strong> and <strong class="text-cyan-400 font-medium">Education</strong>.
             </p>
         </div>
 
-        <div data-aos="fade-in" data-aos-delay="1400" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
+        <div data-aos="fade-in" data-aos-delay="1000" class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 opacity-70 z-20 animate-bounce pointer-events-none">
             <span class="text-[10px] uppercase font-bold tracking-[0.4em] text-white">Scroll</span>
             <div class="w-[2px] h-12 bg-gradient-to-b from-koraGold to-transparent rounded-full"></div>
         </div>
@@ -731,67 +731,76 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-        // 1. IMMEDIATE AOS INITIALIZATION
-        // This ensures elements have their start positions immediately, preventing the "hinged" look.
-        AOS.init({
-            duration: 800, // Faster, snappier animations
-            once: true,
-            offset: 50,
-        });
-
-        // 2. LOADER LOGIC
+        // CORE INITIALIZATION SEQUENCE
+        // To prevent hanging, we must wait for load, hide loader, init GSAP (so height is correct), THEN init AOS.
         window.addEventListener('load', () => {
             const preloader = document.getElementById('preloader');
             const body = document.getElementById('body');
             const navbar = document.getElementById('navbar');
             
-            // Minimal 0.5s delay just so the user sees the cool loader effect after the page actually loads
             setTimeout(() => {
+                // 1. Fade out the preloader
                 preloader.style.opacity = '0';
                 preloader.style.pointerEvents = 'none';
                 
+                // 2. Restore scrolling and reveal navbar
                 body.classList.remove('no-scroll');
                 navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
                 
-                // Refresh AOS so scroll triggers align perfectly after scroll is restored
-                AOS.refresh();
-                
-                // Initialize GSAP after loader is gone
+                // 3. Initialize GSAP FIRST to establish the true height of the page
                 initGSAP();
-            }, 500); 
+
+                // 4. Initialize AOS AFTER GSAP so it knows exactly where elements are
+                setTimeout(() => {
+                    AOS.init({
+                        duration: 800,
+                        once: true,
+                        offset: 50,
+                    });
+                    
+                    // Final safety refresh to ensure positions are locked in
+                    setTimeout(() => {
+                        ScrollTrigger.refresh();
+                        AOS.refresh();
+                    }, 100);
+                }, 100);
+
+            }, 500); // 0.5s visual loader display
         });
 
-        // 3. GSAP Isolated Horizontal Scroll for Core IT
+        // GSAP Isolated Horizontal Scroll for Core IT
         function initGSAP() {
             if (typeof gsap !== 'undefined') {
                 gsap.registerPlugin(ScrollTrigger);
-                ScrollTrigger.refresh();
                 
                 let mm = gsap.matchMedia();
                 mm.add("(min-width: 1024px)", () => {
                     const track = document.getElementById('it-track');
                     const pinContainer = document.getElementById('core-it-pin');
-                    const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
                     
-                    const tween = gsap.to(track, {
-                        x: getScrollAmount,
-                        ease: "none"
-                    });
+                    if(track && pinContainer) {
+                        const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
+                        
+                        const tween = gsap.to(track, {
+                            x: getScrollAmount,
+                            ease: "none"
+                        });
 
-                    ScrollTrigger.create({
-                        trigger: pinContainer,
-                        start: "center center",
-                        end: () => `+=${Math.abs(getScrollAmount())}`,
-                        pin: true,
-                        animation: tween,
-                        scrub: 1,
-                        invalidateOnRefresh: true
-                    });
+                        ScrollTrigger.create({
+                            trigger: pinContainer,
+                            start: "center center",
+                            end: () => `+=${Math.abs(getScrollAmount())}`,
+                            pin: true,
+                            animation: tween,
+                            scrub: 1,
+                            invalidateOnRefresh: true
+                        });
+                    }
                 });
             }
         }
 
-        // 4. Vanilla JS 3D Mouse Parallax (Hero Section)
+        // Vanilla JS 3D Mouse Parallax (Hero Section)
         const heroContent = document.getElementById('hero-content');
         if (window.innerWidth > 768 && heroContent) {
             window.addEventListener('mousemove', (e) => {
@@ -804,7 +813,7 @@
             });
         }
 
-        // 5. Navbar blur on scroll
+        // Navbar blur on scroll
         const navbar = document.getElementById('navbar');
         window.addEventListener('scroll', () => {
             if (window.scrollY > 50) {
@@ -817,7 +826,7 @@
             }
         });
 
-        // 6. Vanilla JS Impact Counters
+        // Vanilla JS Impact Counters
         const counters = document.querySelectorAll('.js-counter');
         const observerOptions = { threshold: 0.5 };
         
@@ -854,7 +863,7 @@
 
         counters.forEach(counter => counterObserver.observe(counter));
 
-        // 7. Mobile Menu Toggle Logic
+        // Mobile Menu Toggle Logic
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const closeMenuBtn = document.getElementById('close-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -868,9 +877,11 @@
             }, 10);
         };
 
-        mobileMenuBtn.addEventListener('click', toggleMenu);
-        closeMenuBtn.addEventListener('click', toggleMenu);
-        mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+        if(mobileMenuBtn && closeMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', toggleMenu);
+            closeMenuBtn.addEventListener('click', toggleMenu);
+            mobileLinks.forEach(link => link.addEventListener('click', toggleMenu));
+        }
     </script>
 </body>
 </html>
