@@ -210,21 +210,26 @@
         </div>
     </section>
 
-    <!-- CORE IT CAPABILITIES -->
-    <section id="core-it" class="bg-dark relative border-t border-white/5 z-20 overflow-hidden">
-        <div id="core-it-pin" class="min-h-screen flex flex-col justify-center relative w-full py-20 lg:py-0">
-            <div class="lg:absolute lg:top-1/2 lg:-translate-y-1/2 lg:left-[5vw] xl:left-[10vw] z-30 px-6 lg:px-0 mb-12 lg:mb-0 w-full lg:w-auto text-center lg:text-left pointer-events-none">
-                <h2 data-aos="fade-right" class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter drop-shadow-lg leading-tight">
-                    Core IT<br/><span class="text-koraGold">Capabilities.</span>
+    <!-- CORE IT CAPABILITIES (Rebuilt as Grid to eliminate GSAP issues) -->
+    <section id="core-it" class="py-32 bg-dark relative border-t border-white/5 z-20 overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 lg:px-8">
+            
+            <!-- Section Header -->
+            <div class="text-center max-w-3xl mx-auto mb-20 relative z-10">
+                <h2 data-aos="fade-up" class="text-4xl md:text-6xl lg:text-7xl font-black text-white tracking-tighter drop-shadow-lg leading-tight mb-6">
+                    Core IT <span class="text-koraGold">Capabilities.</span>
                 </h2>
-                <p data-aos="fade-right" data-aos-delay="100" class="text-white/50 mt-4 max-w-sm mx-auto lg:mx-0 font-light leading-relaxed text-lg">
+                <p data-aos="fade-up" data-aos-delay="100" class="text-white/50 text-lg font-light leading-relaxed">
                     The foundational tech infrastructure powering startups, enterprises, and national platforms.
                 </p>
             </div>
 
-            <div id="it-track" class="flex flex-col lg:flex-row gap-8 lg:gap-10 px-6 lg:px-0 lg:pl-[40vw] xl:pl-[35vw] lg:pr-[15vw] w-full lg:w-max items-center h-auto">
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+            <!-- CSS Grid instead of Horizontal Scroll -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 relative z-10">
+                
+                <!-- Card 1 -->
+                <div data-aos="fade-up" data-aos-delay="100" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -237,8 +242,9 @@
                     </div>
                 </div>
 
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                <!-- Card 2 -->
+                <div data-aos="fade-up" data-aos-delay="200" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -251,8 +257,9 @@
                     </div>
                 </div>
 
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                <!-- Card 3 -->
+                <div data-aos="fade-up" data-aos-delay="300" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -265,8 +272,9 @@
                     </div>
                 </div>
 
-                <div class="w-full lg:w-[450px] lg:h-[65vh] shrink-0">
-                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:scale-[1.02] hover:-rotate-1 cursor-default">
+                <!-- Card 4 -->
+                <div data-aos="fade-up" data-aos-delay="400" class="h-full">
+                    <div class="w-full h-full glass-card hover:border-koraGold/40 rounded-[2.5rem] p-10 flex flex-col justify-between relative overflow-hidden group hover:-translate-y-2 transition-all duration-500 cursor-default">
                         <div class="absolute inset-0 bg-gradient-to-br from-koraGold/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"></div>
                         <div class="relative z-10">
                             <div class="w-16 h-16 rounded-[1.2rem] bg-dark border border-white/10 flex items-center justify-center text-koraGold mb-8 shadow-inner group-hover:bg-koraGold/10 transition-colors duration-500">
@@ -278,6 +286,7 @@
                         <div class="relative z-10 font-mono text-[10px] text-koraGold/50 uppercase tracking-[0.3em] font-bold mt-10">[ Module 04 ]</div>
                     </div>
                 </div>
+
             </div>
         </div>
     </section>
@@ -704,7 +713,7 @@
         </div>
     </footer>
 
-    <!-- MOBILE MENU OVERLAY (Moved outside Nav for better Z-indexing) -->
+    <!-- MOBILE MENU OVERLAY -->
     <div id="mobile-menu" class="fixed inset-0 bg-dark/95 backdrop-blur-3xl z-[100] hidden flex-col items-center justify-center gap-8 opacity-0 transition-opacity duration-300">
         <button id="close-menu-btn" class="absolute top-8 right-8 text-white hover:text-koraGold transition-colors p-2 cursor-pointer">
             <i class="ph ph-x text-3xl pointer-events-none"></i>
@@ -720,12 +729,9 @@
 
     <!-- Scripts -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 
     <script>
-        // 1. INDEPENDENT MOBILE MENU LOGIC
-        // This runs instantly when the script loads, ensuring it never gets blocked.
+        // MOBILE MENU LOGIC
         document.addEventListener('DOMContentLoaded', () => {
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const closeMenuBtn = document.getElementById('close-menu-btn');
@@ -765,54 +771,29 @@
             });
         });
 
-        // 2. CORE ANIMATION SEQUENCE (Fixes the "Hanging" issue)
+        // CORE ANIMATION SEQUENCE (Simplified, no GSAP)
         window.addEventListener('load', () => {
             const body = document.getElementById('body');
             const preloader = document.getElementById('preloader');
             const navbar = document.getElementById('navbar');
 
             setTimeout(() => {
-                // A. Restore full document height FIRST
+                // 1. Restore scroll instantly so page dimensions are normal
                 body.classList.remove('overflow-hidden');
 
-                // B. Init GSAP so it adds its horizontal scroll pin spacing to the page height
-                if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
-                    gsap.registerPlugin(ScrollTrigger);
-                    let mm = gsap.matchMedia();
-                    mm.add("(min-width: 1024px)", () => {
-                        const track = document.getElementById('it-track');
-                        const pinContainer = document.getElementById('core-it-pin');
-                        if(track && pinContainer) {
-                            const getScrollAmount = () => -(track.scrollWidth - window.innerWidth);
-                            gsap.to(track, {
-                                x: getScrollAmount,
-                                ease: "none",
-                                scrollTrigger: {
-                                    trigger: pinContainer,
-                                    start: "center center",
-                                    end: () => `+=${Math.abs(getScrollAmount())}`,
-                                    pin: true,
-                                    scrub: 1,
-                                    invalidateOnRefresh: true
-                                }
-                            });
-                        }
-                    });
-                }
-
-                // C. NOW Init AOS because the page height is 100% accurate
+                // 2. Initialize AOS now that the DOM isn't hidden
                 AOS.init({
                     duration: 800,
                     once: true,
                     offset: 50,
                 });
 
-                // D. Fade out loader & show nav
+                // 3. Fade out the loader & show nav
                 preloader.style.opacity = '0';
                 preloader.style.pointerEvents = 'none';
                 navbar.classList.remove('opacity-0', 'translate-y-[-20px]');
 
-                // E. Parallax Hero
+                // 4. Parallax Hero
                 const heroContent = document.getElementById('hero-content');
                 if (window.innerWidth > 768 && heroContent) {
                     window.addEventListener('mousemove', (e) => {
@@ -825,7 +806,7 @@
                     });
                 }
 
-                // F. Counters
+                // 5. Counters
                 const counters = document.querySelectorAll('.js-counter');
                 const observerOptions = { threshold: 0.5 };
                 const counterObserver = new IntersectionObserver((entries, observer) => {
@@ -857,7 +838,7 @@
                 }, observerOptions);
                 counters.forEach(counter => counterObserver.observe(counter));
 
-            }, 500); // Wait 0.5s for visual loader
+            }, 500); // Wait 0.5s for visual loader effect
         });
     </script>
 </body>
